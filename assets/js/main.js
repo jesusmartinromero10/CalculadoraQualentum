@@ -36,16 +36,65 @@ function calculadora (){
 
     result.addEventListener('click', (event)=>{
         const elementos = digitalScreen.split(/(\D)/).filter(digi => digi.trim() !== '');  //divide la cadena de valore en un array separados por +-*/
-
+        console.log('eeeee',elementos)
         
-        elementos.map(digital => {
-            if(typeof digital){
-                console.log(typeof digital)
+        let a = ''
+        let b = ''
+        for(let i=0; i<elementos.length; i++){
+            if (!isNaN(parseInt(elementos[i]))) {
+                console.log(elementos[i])
+                a = parseInt(elementos[i])
+                console.log('a',a)
+                
+            } else {
+                if(elementos[i]=== '+'){
+                    
+                    i++
+                    b = parseInt(elementos[i])
+                    const suma = a + b
+                    console.log('suma',suma)
+                    if(i<elementos.length){
+                        a=suma
+                    }
+                }
+                if(elementos[i]=== '-'){
+                    
+                    i++
+                    b = parseInt(elementos[i])
+                    const resta = a - b
+                    console.log('resta',resta)
+                    if(i<elementos.length){
+                        a=resta
+                    }
+                }
+                if(elementos[i]=== '×'){
+                    
+                    i++
+                    b = parseInt(elementos[i])
+                    const resta = a * b
+                    console.log('resta',resta)
+                    if(i<elementos.length){
+                        a=resta
+                    }
+                }
+                if(elementos[i]=== '÷'){
+                    
+                    i++
+                    b = parseInt(elementos[i])
+                    const resta = a / b
+                    console.log('resta',resta)
+                    if(i<elementos.length){
+                        a=resta
+                    }
+                }
+                console.log(elementos[i])
 
             }
-        })
-        digitalScreen=10
-        screen.textContent=digitalScreen
+
+        }
+
+
+        screen.textContent=a
     })
 
 }
