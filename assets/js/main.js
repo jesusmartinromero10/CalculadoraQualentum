@@ -38,22 +38,51 @@ function calculadora (){
     })
 
     result.addEventListener('click', (event)=>{
-        const elementos = digitalScreen.split(/(\D)/).filter(digi => digi.trim() !== '');  //divide la cadena de valore en un array separados por +-*/
+        let elementos = digitalScreen.split(/(\D)/).filter(digi => digi.trim() !== '');  //divide la cadena de valore en un array separados por +-*/
         console.log('eeeee',elementos)
-        
         let a = ''
         let b = ''
+        const pppp = [2 , '+', 5, '*', 6, '*', 6, '/', 2]
+
+
+       for(let i = 0; i<elementos.length; i++){
+           if (elementos[i] === '×'){
+                let res = elementos[i-1] * elementos[i+1]
+                console.log('ressss', res)
+                elementos.splice(i-1,3, res)
+                console.log('ppppp',pppp)
+                console.log(i)
+                i--
+                a=res
+
+           }
+
+           if (elementos[i] === '÷'){
+               if (elementos[i+1]==='0'){
+                screen.textContent="error dividir por 0"
+                return 
+               }
+            let res = elementos[i-1] / elementos[i+1]
+            a= parseFloat(res)
+            elementos.splice(i-1,3, res)
+            i--
+
+            }
+       }
+
+        
+        
         for(let i=0; i<elementos.length; i++){
             if (!isNaN(parseInt(elementos[i]))) {
-                console.log(elementos[i])
-                a = parseInt(elementos[i])
+                console.log('asdc',elementos[i])
+                a = parseFloat(elementos[i])
                 console.log('a',a)
                 
             } else {
                 if(elementos[i]=== '+'){
                     
                     i++
-                    b = parseInt(elementos[i])
+                    b = parseFloat(elementos[i])
                     //const suma = a + b
                     const suma = sumar(a, b)
                     console.log('suma',suma)
@@ -64,38 +93,38 @@ function calculadora (){
                 if(elementos[i]=== '-'){
                     
                     i++
-                    b = parseInt(elementos[i])
+                    b = parseFloat(elementos[i])
                     const resta = restar(a, b)
                     console.log('resta',resta)
                     if(i<elementos.length){
                         a=resta
                     }
                 }
-                if(elementos[i]=== '×'){
+                // if(elementos[i]=== '×'){
                     
-                    i++
-                    b = parseInt(elementos[i])
-                    const resta = multiplicar(a, b)
-                    console.log('resta',resta)
-                    if(i<elementos.length){
-                        a=resta
-                    }
-                }
-                if(elementos[i]=== '÷'){
+                //     i++
+                //     b = parseInt(elementos[i])
+                //     const resta = multiplicar(a, b)
+                //     console.log('resta',resta)
+                //     if(i<elementos.length){
+                //         a=resta
+                //     }
+                // }
+                // if(elementos[i]=== '÷'){
                     
-                    i++
-                    b = parseInt(elementos[i])
-                    if(b===0){
-                        screen.textContent="error dividir por 0"
-                        return
-                    }
-                    const resta = dividir(a, b)
-                    console.log('resta',resta)
-                    if(i<elementos.length){
-                        a=resta
-                    }
-                }
-                console.log(elementos[i])
+                //     i++
+                //     b = parseInt(elementos[i])
+                //     if(b===0){
+                //         screen.textContent="error dividir por 0"
+                //         return
+                //     }
+                //     const resta = dividir(a, b)
+                //     console.log('resta',resta)
+                //     if(i<elementos.length){
+                //         a=resta
+                //     }
+                // }
+                console.log('aaaa',elementos[i])
 
             }
 
