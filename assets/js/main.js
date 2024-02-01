@@ -1,3 +1,6 @@
+import {sumar, restar, multiplicar, dividir} from '../../node_modules/operacionesqualentum/main.js'
+
+
 function calculadora (){
     const numbers = document.querySelectorAll('.numbers div')
     const clear = document.getElementById('clear')
@@ -51,7 +54,8 @@ function calculadora (){
                     
                     i++
                     b = parseInt(elementos[i])
-                    const suma = a + b
+                    //const suma = a + b
+                    const suma = sumar(a, b)
                     console.log('suma',suma)
                     if(i<elementos.length){
                         a=suma
@@ -61,7 +65,7 @@ function calculadora (){
                     
                     i++
                     b = parseInt(elementos[i])
-                    const resta = a - b
+                    const resta = restar(a, b)
                     console.log('resta',resta)
                     if(i<elementos.length){
                         a=resta
@@ -71,7 +75,7 @@ function calculadora (){
                     
                     i++
                     b = parseInt(elementos[i])
-                    const resta = a * b
+                    const resta = multiplicar(a, b)
                     console.log('resta',resta)
                     if(i<elementos.length){
                         a=resta
@@ -81,7 +85,11 @@ function calculadora (){
                     
                     i++
                     b = parseInt(elementos[i])
-                    const resta = a / b
+                    if(b===0){
+                        screen.textContent="error dividir por 0"
+                        return
+                    }
+                    const resta = dividir(a, b)
                     console.log('resta',resta)
                     if(i<elementos.length){
                         a=resta
@@ -96,6 +104,8 @@ function calculadora (){
 
         screen.textContent=a
     })
+    
+    
 
 }
 
